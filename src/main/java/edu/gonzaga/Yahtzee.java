@@ -38,7 +38,18 @@ class Yahtzee {
 
     // Constructor for the actual Yahtzee object
     public Yahtzee() {
-        // player = new Player();
+        Integer[] hand = new Integer[5];
+        Die die = new Die(6);
+        ScoreCard score = new ScoreCard();
+        String h = this.diceValuesTextField.getText();
+        for(int i = 0; i < hand.length; i++)
+        {
+            hand[i] = Integer.parseInt(h.substring(i));
+        }
+        if((rerollsLeftTextField.getText() != "0"))
+        {
+
+        }
         // Create any object you'll need for storing the game:
         // Player, Scorecard, Hand/Dice
     }
@@ -151,18 +162,24 @@ class Yahtzee {
      *   in the various text widgets.
      */
     private void putDemoDefaultValuesInGUI() {
+        Integer[] hand = new Integer[5];
+        Die die = new Die(6);
+
         // Example setting of player name
-        this.playerNameTextField.setText("Player One");
+        this.playerNameTextField.setText("Player's Name ");
 
         // Example of player entered dice keep string
         this.diceKeepStringTextField.setText("nnnyn");
 
         // Example of setting the rerolls left
-        this.rerollsLeftTextField.setText("5");
+        this.rerollsLeftTextField.setText("2");
 
 
         // The scorecard can be "printed" to the text area widget
         this.scorecardTextArea.setText("Scorecard text goes here");
+
+        // Player's starting dice string
+        this.diceValuesTextField.setText(die.defaultHand(hand));
 
     }
 
