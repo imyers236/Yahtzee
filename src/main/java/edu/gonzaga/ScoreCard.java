@@ -80,15 +80,14 @@ public class ScoreCard {
      * dieNumber is for every die
      * currentCount is the count of the number of die with a certain value
      */
-    public void printTotalScore(Integer[] hand)
-    {
+    public String printTotalScore(Integer[] hand)
+    { String out = "";
         sortArray(hand, DICE_IN_PLAY);
-        System.out.print("Here is your sorted hand : ");
+        out = out +"Here is your sorted hand : ";
         for (Integer dieNumber = 0; dieNumber < DICE_IN_PLAY; dieNumber++)
             {
-                System.out.print(hand[dieNumber] + " ");
+                out = out +hand[dieNumber] + " ";
             }
-            System.out.println();
             
 
         //upper scorecard
@@ -175,6 +174,7 @@ public class ScoreCard {
 
         totalScore = line1 + line2 + line3 + line4 + line5 + line6 + kline3 + kline4 + fhline + smsline + lgsline + yline + cline + upperBonus;
         System.out.println("Current total score: " + totalScore);
+        return out;
     }
 
     /**

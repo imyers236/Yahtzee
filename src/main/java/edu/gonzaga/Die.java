@@ -67,7 +67,7 @@ public class Die implements Comparable<Die> {
         return dice;
     }
 
-    public String hand(Integer[] hand, String keep)
+    public String dhand(Integer[] hand, String keep)
     {
         String dice = "";
         for (int dieNumber = 0; dieNumber < DICE_IN_PLAY; dieNumber++)
@@ -76,8 +76,8 @@ public class Die implements Comparable<Die> {
                 {
                     roll();
                     hand[dieNumber] = getSideUp();    
-                    dice = dice + String.valueOf(getSideUp()) ;
                 }
+                dice = dice + String.valueOf(hand[dieNumber]);
             }
         return dice;
     }
