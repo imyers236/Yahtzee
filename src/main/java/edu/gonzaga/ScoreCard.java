@@ -239,7 +239,7 @@ public class ScoreCard {
             }
             if((dieValue == 1))
             {
-                if((Integer.getInteger(actual[0]) == 0))
+                if((Integer.parseInt(actual[0]) == 0))
                 {
                     
                     line1Save = dieValue * currentCount; 
@@ -253,7 +253,7 @@ public class ScoreCard {
             }
             else if((dieValue == 2))
             {
-                if((Integer.getInteger(actual[1]) == 0))
+                if((Integer.parseInt(actual[1]) == 0))
                 {
                     line2Save = dieValue * currentCount;
                     keep[1] = String.valueOf(line2Save);
@@ -266,7 +266,7 @@ public class ScoreCard {
             }
             else if((dieValue == 3))
             {
-                if((Integer.getInteger(actual[2]) == 0))
+                if((Integer.parseInt(actual[2]) == 0))
                 {
                     line3Save = dieValue * currentCount;
                     keep[2] = String.valueOf(line3Save);
@@ -279,7 +279,7 @@ public class ScoreCard {
             }
             if((dieValue == 4))
             {
-                if((Integer.getInteger(actual[3]) == 0))
+                if((Integer.parseInt(actual[3]) == 0))
                 {
                     line4Save = dieValue * currentCount;
                     keep[3] = String.valueOf(line4Save);
@@ -292,7 +292,7 @@ public class ScoreCard {
             }
             if((dieValue == 5))
             {
-                if((Integer.getInteger(actual[4]) == 0))
+                if((Integer.parseInt(actual[4]) == 0))
                 {
                     line5Save = dieValue * currentCount;
                     keep[4] = String.valueOf(line5Save);
@@ -305,7 +305,7 @@ public class ScoreCard {
             }
             if((dieValue == 6))
             {
-                if((Integer.getInteger(actual[5]) == 0))
+                if((Integer.parseInt(actual[5]) == 0))
                 {
                     line6Save = dieValue * currentCount;
                     keep[5] = String.valueOf(line6Save);
@@ -317,29 +317,29 @@ public class ScoreCard {
                 }
             }
         }
-        if((Integer.getInteger(actual[0]) + Integer.getInteger(actual[1]) + Integer.getInteger(actual[2]) + Integer.getInteger(actual[3]) + Integer.getInteger(actual[4]) + Integer.getInteger(actual[5])) >= 63 )
+        if((Integer.parseInt(actual[0]) + Integer.parseInt(actual[1]) + Integer.parseInt(actual[2]) + Integer.parseInt(actual[3]) + Integer.parseInt(actual[4]) + Integer.parseInt(actual[5])) >= 63 )
         {
             upperBonus = 35;
-            keep[6] = String.valueOf(Integer.getInteger(actual[0]) + Integer.getInteger(actual[1]) + Integer.getInteger(actual[2]) + Integer.getInteger(actual[3]) + Integer.getInteger(actual[4]) + Integer.getInteger(actual[5]));
-            actual[6] = String.valueOf(Integer.getInteger(actual[0]) + Integer.getInteger(actual[1]) + Integer.getInteger(actual[2]) + Integer.getInteger(actual[3]) + Integer.getInteger(actual[4]) + Integer.getInteger(actual[5]));
+            keep[6] = String.valueOf(Integer.parseInt(actual[0]) + Integer.parseInt(actual[1]) + Integer.parseInt(actual[2]) + Integer.parseInt(actual[3]) + Integer.parseInt(actual[4]) + Integer.parseInt(actual[5]));
+            actual[6] = String.valueOf(Integer.parseInt(actual[0]) + Integer.parseInt(actual[1]) + Integer.parseInt(actual[2]) + Integer.parseInt(actual[3]) + Integer.parseInt(actual[4]) + Integer.parseInt(actual[5]));
             keep[7] = String.valueOf(upperBonus);
             actual[7] = String.valueOf(upperBonus);
         }
         else
         {
             upperBonus = 0;
-            keep[6] = String.valueOf(Integer.getInteger(actual[0]) + Integer.getInteger(actual[1]) + Integer.getInteger(actual[2]) + Integer.getInteger(actual[3]) + Integer.getInteger(actual[4]) + Integer.getInteger(actual[5]));
+            keep[6] = String.valueOf(Integer.parseInt(actual[0]) + Integer.parseInt(actual[1]) + Integer.parseInt(actual[2]) + Integer.parseInt(actual[3]) + Integer.parseInt(actual[4]) + Integer.parseInt(actual[5]));
             actual[6] = String.valueOf(0);
             keep[7] = String.valueOf(upperBonus);
             actual[7] = String.valueOf(0);
         }
         //lower scorecard
-        if (maxOfAKindFound(hand) >= 3 && (Integer.getInteger(actual[8]) == 0))
+        if (maxOfAKindFound(hand) >= 3 && (Integer.parseInt(actual[8]) == 0))
         {
             keep[8] = String.valueOf(totalAllDice(hand));
             actual[8] = String.valueOf(0);
         }
-        else if(maxOfAKindFound(hand) >= 3 && !(Integer.getInteger(actual[8]) == 0))
+        else if(maxOfAKindFound(hand) >= 3 && !(Integer.parseInt(actual[8]) == 0))
         {
             keep[8] = actual[8];
         }
@@ -350,12 +350,12 @@ public class ScoreCard {
         }
             
 
-        if (maxOfAKindFound(hand) >= 4 && (Integer.getInteger(actual[9]) == 0))
+        if (maxOfAKindFound(hand) >= 4 && (Integer.parseInt(actual[9]) == 0))
         {
             keep[9] = String.valueOf(totalAllDice(hand));
             actual[9] = String.valueOf(0);
         }
-        else if(maxOfAKindFound(hand) >= 4 && !(Integer.getInteger(actual[9]) == 0))
+        else if(maxOfAKindFound(hand) >= 4 && !(Integer.parseInt(actual[9]) == 0))
         {
             keep[9] = actual[9];
         }
@@ -365,12 +365,12 @@ public class ScoreCard {
             actual[9] = String.valueOf(0);
         }
 
-        if (fullHouseFound(hand) && (Integer.getInteger(actual[10]) == 0))
+        if (fullHouseFound(hand) && (Integer.parseInt(actual[10]) == 0))
         {
             keep[10] = String.valueOf(25);
             actual[10] = String.valueOf(0);
         }  
-        else if(fullHouseFound(hand) && !(Integer.getInteger(actual[10]) == 0))
+        else if(fullHouseFound(hand) && !(Integer.parseInt(actual[10]) == 0))
         {
             keep[10] = actual[10];
         }
@@ -380,12 +380,12 @@ public class ScoreCard {
             actual[10] = String.valueOf(0);
         }  
 
-        if (maxStraightFound(hand) >= 4 && (Integer.getInteger(actual[11]) == 0))
+        if (maxStraightFound(hand) >= 4 && (Integer.parseInt(actual[11]) == 0))
         {
             keep[11] = String.valueOf(30);
             actual[11] = String.valueOf(0);
         } 
-        else if(maxStraightFound(hand) >= 4 && !(Integer.getInteger(actual[11]) == 0))
+        else if(maxStraightFound(hand) >= 4 && !(Integer.parseInt(actual[11]) == 0))
         {
             keep[11] = actual[11];
         }
@@ -395,12 +395,12 @@ public class ScoreCard {
             actual[11] = String.valueOf(0);
         }
             
-        if (maxStraightFound(hand) >= 5 && (Integer.getInteger(actual[12]) == 0))
+        if (maxStraightFound(hand) >= 5 && (Integer.parseInt(actual[12]) == 0))
         {
             keep[12] = String.valueOf(40);
             actual[12] = String.valueOf(0);
         } 
-        else if(maxStraightFound(hand) >= 5 && !(Integer.getInteger(actual[12]) == 0))
+        else if(maxStraightFound(hand) >= 5 && !(Integer.parseInt(actual[12]) == 0))
         {
             keep[12] = actual[12];
         } 
@@ -409,12 +409,12 @@ public class ScoreCard {
             keep[12] = String.valueOf(0);
             actual[12] = String.valueOf(0);
         }   
-        if (maxOfAKindFound(hand) >= 5 && (Integer.getInteger(actual[13]) == 0))
+        if (maxOfAKindFound(hand) >= 5 && (Integer.parseInt(actual[13]) == 0))
         {
             keep[13] = String.valueOf(50);
             actual[13] = String.valueOf(0);
         }
-        else if(maxOfAKindFound(hand) >=5 && !(Integer.getInteger(actual[13]) == 0))
+        else if(maxOfAKindFound(hand) >=5 && !(Integer.parseInt(actual[13]) == 0))
         {
             keep[13] = actual[13];
         }
@@ -433,7 +433,7 @@ public class ScoreCard {
         {
             keep[14] = actual[14];
         }
-        totalScore = Integer.getInteger(actual[0]) + Integer.getInteger(actual[1]) + Integer.getInteger(actual[2]) + Integer.getInteger(actual[3]) + Integer.getInteger(actual[4]) + Integer.getInteger(actual[5]) + Integer.getInteger(actual[7]) + Integer.getInteger(actual[8]) + Integer.getInteger(actual[9]) + Integer.getInteger(actual[10]) + Integer.getInteger(actual[11]) + Integer.getInteger(actual[12]) + Integer.getInteger(actual[13]) + Integer.getInteger(actual[14]);
+        totalScore = Integer.parseInt(actual[0]) + Integer.parseInt(actual[1]) + Integer.parseInt(actual[2]) + Integer.parseInt(actual[3]) + Integer.parseInt(actual[4]) + Integer.parseInt(actual[5]) + Integer.parseInt(actual[7]) + Integer.parseInt(actual[8]) + Integer.parseInt(actual[9]) + Integer.parseInt(actual[10]) + Integer.parseInt(actual[11]) + Integer.parseInt(actual[12]) + Integer.parseInt(actual[13]) + Integer.parseInt(actual[14]);
         keep[15] = String.valueOf(totalScore);
         actual[15] = String.valueOf(totalScore);
 

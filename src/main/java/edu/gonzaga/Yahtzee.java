@@ -465,7 +465,7 @@ class Yahtzee {
     private void setupScore()
     {
         this.scorecardTextArea.setText(score.printSortedArray(hand));
-        //score.storeCard(hand);
+        score.storeCard(hand);
         this.onePossArea.setText(score.getArrayVal("p", 0));
         this.twoPossArea.setText(score.getArrayVal("p", 1));
         this.threePossArea.setText(score.getArrayVal("p", 2));
