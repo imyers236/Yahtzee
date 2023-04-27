@@ -551,6 +551,8 @@ class Yahtzee {
                         gameOverFrame.setVisible(true);
                         putDemoDefaultValuesInGUI();
                     }
+                    change1 = true;
+                    onePossArea.setText("Closed");
                 }
                 
             }
@@ -573,6 +575,8 @@ class Yahtzee {
                     gameOverFrame.setVisible(true);
                     putDemoDefaultValuesInGUI();
                 }
+                change2 = true;
+                twoPossArea.setText("Closed");
             }
            }
        });
@@ -594,6 +598,8 @@ class Yahtzee {
                         gameOverFrame.setVisible(true);
                         putDemoDefaultValuesInGUI();
                     }
+                    change3 = true;
+                    threePossArea.setText("Closed");
                 }
             }
         });
@@ -615,6 +621,8 @@ class Yahtzee {
                         gameOverFrame.setVisible(true);
                         putDemoDefaultValuesInGUI();
                     }
+                    change4 = true;
+                    fourPossArea.setText("Closed");
                 }
            }
        });
@@ -636,6 +644,8 @@ class Yahtzee {
                         gameOverFrame.setVisible(true);
                         putDemoDefaultValuesInGUI();
                     }
+                    change5 = true;
+                    fivePossArea.setText("Closed");
                 }
             }
         });
@@ -657,7 +667,10 @@ class Yahtzee {
                         gameOverFrame.setVisible(true);
                         putDemoDefaultValuesInGUI();
                     }
+                    change6 = true;
+                    sixPossArea.setText("Closed");
                 }
+
             }
         });
 
@@ -678,6 +691,8 @@ class Yahtzee {
                        gameOverFrame.setVisible(true);
                        putDemoDefaultValuesInGUI();
                    }
+                   change3k = true;
+                   kline3PossArea.setText("Closed");
                }
            }
        });
@@ -699,6 +714,8 @@ class Yahtzee {
                         gameOverFrame.setVisible(true);
                         putDemoDefaultValuesInGUI();
                     }
+                    change4k = true;
+                    kline4PossArea.setText("Closed");
                 }
             }
         });
@@ -720,6 +737,8 @@ class Yahtzee {
                        gameOverFrame.setVisible(true);
                        putDemoDefaultValuesInGUI();
                    }
+                   changefh = true;
+                   fhlinePossArea.setText("Closed");
                }
            }
        });
@@ -741,6 +760,8 @@ class Yahtzee {
                         gameOverFrame.setVisible(true);
                         putDemoDefaultValuesInGUI();
                     }
+                    changesms = true;
+                    smslinePossArea.setText("Closed");
                 }
             }
         });
@@ -762,6 +783,8 @@ class Yahtzee {
                        gameOverFrame.setVisible(true);
                        putDemoDefaultValuesInGUI();
                    }
+                   changelgs = true;
+                   lgslinePossArea.setText("Closed");
                }
            }
        });
@@ -783,6 +806,8 @@ class Yahtzee {
                         gameOverFrame.setVisible(true);
                         putDemoDefaultValuesInGUI();
                     }
+                    changey = true;
+                    ylinePossArea.setText("Closed");
                 }
             }
         });
@@ -804,6 +829,8 @@ class Yahtzee {
                         gameOverFrame.setVisible(true);
                         putDemoDefaultValuesInGUI();
                     }
+                    changec = true;
+                    clinePossArea.setText("Closed");
                 }
             }
         });
@@ -887,19 +914,59 @@ class Yahtzee {
     {
         this.scorecardTextArea.setText(score.printSortedArray(hand));
         score.storeCard(hand);
-        this.onePossArea.setText(score.getArrayVal("p", 0));
-        this.twoPossArea.setText(score.getArrayVal("p", 1));
-        this.threePossArea.setText(score.getArrayVal("p", 2));
-        this.fourPossArea.setText(score.getArrayVal("p", 3));
-        this.fivePossArea.setText(score.getArrayVal("p", 4));
-        this.sixPossArea.setText(score.getArrayVal("p", 5));
-        this.kline3PossArea.setText(score.getArrayVal("p", 8));
-        this.kline4PossArea.setText(score.getArrayVal("p", 9)); 
-        this.fhlinePossArea.setText(score.getArrayVal("p", 10)); 
-        this.smslinePossArea.setText(score.getArrayVal("p", 11)); 
-        this.lgslinePossArea.setText(score.getArrayVal("p", 12)); 
-        this.ylinePossArea.setText(score.getArrayVal("p", 13)); 
-        this.clinePossArea.setText(score.getArrayVal("p", 14)); 
+        if(!change1)
+        {
+            this.onePossArea.setText(score.getArrayVal("p", 0));
+        }
+        if(!change2)
+        {
+            this.twoPossArea.setText(score.getArrayVal("p", 1));
+        }
+        if(!change3)
+        {
+            this.threePossArea.setText(score.getArrayVal("p", 2));
+        }
+        if(!change4)
+        {
+            this.fourPossArea.setText(score.getArrayVal("p", 3));
+        }
+        if(!change5)
+        {
+            this.fivePossArea.setText(score.getArrayVal("p", 4));
+        }
+        if(!change6)
+        {
+            this.sixPossArea.setText(score.getArrayVal("p", 5));
+        }
+        if(!change3k)
+        {
+            this.kline3PossArea.setText(score.getArrayVal("p", 8));
+        }
+        if(!change4k)
+        {
+            this.kline4PossArea.setText(score.getArrayVal("p", 9)); 
+        }
+        if(!changefh)
+        {
+            this.fhlinePossArea.setText(score.getArrayVal("p", 10));
+        }
+        if(!changesms)
+        {
+            this.smslinePossArea.setText(score.getArrayVal("p", 11)); 
+        }
+        if(!changelgs)
+        {
+            this.lgslinePossArea.setText(score.getArrayVal("p", 12)); 
+        }
+        if(!changey)
+        {
+            this.ylinePossArea.setText(score.getArrayVal("p", 13)); 
+        }
+        if(!changec)
+        {
+            this.clinePossArea.setText(score.getArrayVal("p", 14));
+        }
+        
 
         // Bonus and total scores text area
         this.bonusArea.setText(score.getArrayVal("p", 7));
