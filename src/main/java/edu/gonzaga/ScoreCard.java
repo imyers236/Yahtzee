@@ -411,7 +411,7 @@ public class ScoreCard {
         }   
         if (maxOfAKindFound(hand) >= 5 && (Integer.parseInt(actual[13]) == 0))
         {
-            keep[13] = String.valueOf(50);
+            keep[13] = String.valueOf(totalAllDice(hand));
             actual[13] = String.valueOf(0);
         }
         else if(maxOfAKindFound(hand) >=5 && !(Integer.parseInt(actual[13]) == 0))

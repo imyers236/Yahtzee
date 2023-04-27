@@ -13,9 +13,14 @@ class Yahtzee {
     Integer[] hand;
     Die die;
     ScoreCard score;
+    DiceImages im;
+
+    // rounds
+    Integer rounds;
 
     // Main game GUI window and two main panels (left & right)
     JFrame mainWindowFrame;
+    JFrame gameOverFrame;
     JPanel controlPanel;
     JPanel scorecardPanel;
 
@@ -27,6 +32,36 @@ class Yahtzee {
     JTextField diceKeepStringTextField;
     JButton diceRerollBtn;
     JTextField rerollsLeftTextField;
+
+    // Booleans to make sure there are no changes
+    Boolean change1;
+    Boolean change2;
+    Boolean change3;
+    Boolean change4;
+    Boolean change5;
+    Boolean change6;
+    Boolean change3k;
+    Boolean change4k;
+    Boolean changefh;
+    Boolean changesms;
+    Boolean changelgs;
+    Boolean changey;
+    Boolean changec;
+    
+
+    // JLabels for Dice Images
+    JLabel slot1;
+    JLabel slot2;
+    JLabel slot3;
+    JLabel slot4;
+    JLabel slot5; 
+
+    // Checkboxs for Dice
+    JCheckBox check1;
+    JCheckBox check2;
+    JCheckBox check3;
+    JCheckBox check4;
+    JCheckBox check5;
 
     // Scorecard view and controls
     JTextArea scorecardTextArea;
@@ -86,7 +121,21 @@ class Yahtzee {
         hand = new Integer[5];
         die = new Die(6);
         score = new ScoreCard();
-        
+        im = new DiceImages("src/media");
+        rounds = 1;
+        change1 = false;
+        change2 = false;
+        change3 = false;
+        change4 = false;
+        change5 = false;
+        change6 = false;
+        change3k = false;
+        change4k = false;
+        changefh = false;
+        changesms = false;
+        changelgs = false;
+        changey = false;
+        changec = false;
         
         // Create any object you'll need for storing the game:
         // Player, Scorecard, Hand/Dice
@@ -126,13 +175,37 @@ class Yahtzee {
         JLabel playerNameLabel = new JLabel("Player name:");
         this.playerNameTextField = new JTextField();
 
+        //dice
+        JPanel diceValPanel = new JPanel();
+        slot1 = new JLabel(im.getDieImage(1));
+        slot2 = new JLabel(im.getDieImage(1));
+        slot3 = new JLabel(im.getDieImage(1));
+        slot4 = new JLabel(im.getDieImage(1));
+        slot5 = new JLabel(im.getDieImage(1));
+        diceValPanel.add(slot1);
+        diceValPanel.add(slot2);
+        diceValPanel.add(slot3);
+        diceValPanel.add(slot4);
+        diceValPanel.add(slot5);
+
         // Dice Values row widgets
         JLabel diceValuesLabel = new JLabel("Dice values:");
         this.diceValuesTextField = new JTextField();
         this.diceValuesTextField.setEditable(false);
 
         // Die keep user selection
-        JLabel diceKeepInputLabel = new JLabel("Dice keep string:");
+        JLabel diceKeepInputLabel = new JLabel("To keep Dice Check Box:");
+        JPanel diceChecksPanel = new JPanel();
+        check1 = new JCheckBox("Slot 1");
+        check2 = new JCheckBox("Slot 2");
+        check3 = new JCheckBox("Slot 3");
+        check4 = new JCheckBox("Slot 4");
+        check5 = new JCheckBox("Slot 5");
+        diceChecksPanel.add(check1);
+        diceChecksPanel.add(check2);
+        diceChecksPanel.add(check3);
+        diceChecksPanel.add(check4);
+        diceChecksPanel.add(check5);
         this.diceKeepStringTextField = new JTextField();
 
         // Rolls left and roll button
@@ -150,10 +223,10 @@ class Yahtzee {
         newControlPanel.add(this.playerNameTextField);
 
         newControlPanel.add(diceValuesLabel);
-        newControlPanel.add(this.diceValuesTextField);
+        newControlPanel.add(diceValPanel);
 
         newControlPanel.add(diceKeepInputLabel);
-        newControlPanel.add(this.diceKeepStringTextField);
+        newControlPanel.add(diceChecksPanel);
 
         newControlPanel.add(rollsLeftPanel);
         newControlPanel.add(this.diceRerollBtn);
@@ -412,12 +485,34 @@ class Yahtzee {
 
 
         // The scorecard can be "printed" to the text area widget
-        this.scorecardTextArea.setText("Scorecard text goes here");
+        this.scorecardTextArea.setText("");
 
         // Player's starting dice string
-        this.diceValuesTextField.setText(die.defaultHand(hand));
+        die.defaultHand(hand);
+        slot1.setIcon(im.getDieImage(hand[0]));
+        slot2.setIcon(im.getDieImage(hand[1]));
+        slot3.setIcon(im.getDieImage(hand[2]));
+        slot4.setIcon(im.getDieImage(hand[3]));
+        slot5.setIcon(im.getDieImage(hand[4]));
     }
 
+    void setupGameOver()
+    {
+        this.gameOverFrame = new JFrame("Game Over");
+        this.gameOverFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.gameOverFrame.setSize(400, 400);
+        this.gameOverFrame.setLocation(100,100);
+
+        JLabel gameOverLabel = new JLabel("Game Over");
+        this.totalScoreArea.setText(score.getArrayVal("p", 15));
+        this.totalScoreArea.setEditable(false);
+
+        JPanel gameOverPanel = new JPanel();
+        gameOverPanel.add(gameOverLabel);
+        gameOverPanel.add(totalScoreArea);
+
+        gameOverFrame.getContentPane().add(BorderLayout.CENTER, gameOverPanel);
+    }
     /*
      * This is a demo of how to add callbacks to the buttons
      *  These callbacks can access the class member variables this way
@@ -442,16 +537,337 @@ class Yahtzee {
         this.oneBtn.addActionListener(new ActionListener() {
              @Override
             public void actionPerformed(ActionEvent e) {
+                if(!change1)
+                {
+                    score.changeArray("a", 0,score.getArrayVal("p", 0));
+                    if(rounds < 13)
+                    {
+                        putDemoDefaultValuesInGUI();
+                        rounds++;
+                    }
+                    else
+                    {
+                        setupGameOver();
+                        gameOverFrame.setVisible(true);
+                        putDemoDefaultValuesInGUI();
+                    }
+                }
                 
             }
         });
 
+        this.twoBtn.addActionListener(new ActionListener() {
+            @Override
+           public void actionPerformed(ActionEvent e) {
+            if(!change2)
+            {
+                score.changeArray("a", 0,score.getArrayVal("p", 0));
+                if(rounds < 13)
+                {
+                    putDemoDefaultValuesInGUI();
+                    rounds++;
+                }
+                else
+                {
+                    setupGameOver();
+                    gameOverFrame.setVisible(true);
+                    putDemoDefaultValuesInGUI();
+                }
+            }
+           }
+       });
+
+       this.threeBtn.addActionListener(new ActionListener() {
+            @Override
+        public void actionPerformed(ActionEvent e) {
+            if(!change3)
+                {
+                    score.changeArray("a", 0,score.getArrayVal("p", 0));
+                    if(rounds < 13)
+                    {
+                        putDemoDefaultValuesInGUI();
+                        rounds++;
+                    }
+                    else
+                    {
+                        setupGameOver();
+                        gameOverFrame.setVisible(true);
+                        putDemoDefaultValuesInGUI();
+                    }
+                }
+            }
+        });
+
+        this.fourBtn.addActionListener(new ActionListener() {
+            @Override
+           public void actionPerformed(ActionEvent e) {
+            if(!change4)
+                {
+                    score.changeArray("a", 0,score.getArrayVal("p", 0));
+                    if(rounds < 13)
+                    {
+                        putDemoDefaultValuesInGUI();
+                        rounds++;
+                    }
+                    else
+                    {
+                        setupGameOver();
+                        gameOverFrame.setVisible(true);
+                        putDemoDefaultValuesInGUI();
+                    }
+                }
+           }
+       });
+
+       this.fiveBtn.addActionListener(new ActionListener() {
+             @Override
+            public void actionPerformed(ActionEvent e) {
+                if(!change5)
+                {
+                    score.changeArray("a", 0,score.getArrayVal("p", 0));
+                    if(rounds < 13)
+                    {
+                        putDemoDefaultValuesInGUI();
+                        rounds++;
+                    }
+                    else
+                    {
+                        setupGameOver();
+                        gameOverFrame.setVisible(true);
+                        putDemoDefaultValuesInGUI();
+                    }
+                }
+            }
+        });
+
+        this.sixBtn.addActionListener(new ActionListener() {
+             @Override
+            public void actionPerformed(ActionEvent e) {
+                if(!change6)
+                {
+                    score.changeArray("a", 0,score.getArrayVal("p", 0));
+                    if(rounds < 13)
+                    {
+                        putDemoDefaultValuesInGUI();
+                        rounds++;
+                    }
+                    else
+                    {
+                        setupGameOver();
+                        gameOverFrame.setVisible(true);
+                        putDemoDefaultValuesInGUI();
+                    }
+                }
+            }
+        });
+
+        this.kline3Btn.addActionListener(new ActionListener() {
+            @Override
+           public void actionPerformed(ActionEvent e) {
+               if(!change3k)
+               {
+                   score.changeArray("a", 8,score.getArrayVal("p", 8));
+                   if(rounds < 13)
+                   {
+                       putDemoDefaultValuesInGUI();
+                       rounds++;
+                   }
+                   else
+                   {
+                       setupGameOver();
+                       gameOverFrame.setVisible(true);
+                       putDemoDefaultValuesInGUI();
+                   }
+               }
+           }
+       });
+
+       this.kline4Btn.addActionListener(new ActionListener() {
+             @Override
+            public void actionPerformed(ActionEvent e) {
+                if(!change4k)
+                {
+                    score.changeArray("a", 9,score.getArrayVal("p", 9));
+                    if(rounds < 13)
+                    {
+                        putDemoDefaultValuesInGUI();
+                        rounds++;
+                    }
+                    else
+                    {
+                        setupGameOver();
+                        gameOverFrame.setVisible(true);
+                        putDemoDefaultValuesInGUI();
+                    }
+                }
+            }
+        });
+
+        this.fhlineBtn.addActionListener(new ActionListener() {
+            @Override
+           public void actionPerformed(ActionEvent e) {
+               if(!changefh)
+               {
+                   score.changeArray("a", 10,score.getArrayVal("p", 10));
+                   if(rounds < 13)
+                   {
+                       putDemoDefaultValuesInGUI();
+                       rounds++;
+                   }
+                   else
+                   {
+                       setupGameOver();
+                       gameOverFrame.setVisible(true);
+                       putDemoDefaultValuesInGUI();
+                   }
+               }
+           }
+       });
+
+       this.smslineBtn.addActionListener(new ActionListener() {
+             @Override
+            public void actionPerformed(ActionEvent e) {
+                if(!changesms)
+                {
+                    score.changeArray("a", 11,score.getArrayVal("p", 11));
+                    if(rounds < 13)
+                    {
+                        putDemoDefaultValuesInGUI();
+                        rounds++;
+                    }
+                    else
+                    {
+                        setupGameOver();
+                        gameOverFrame.setVisible(true);
+                        putDemoDefaultValuesInGUI();
+                    }
+                }
+            }
+        });
+
+        this.lgslineBtn.addActionListener(new ActionListener() {
+            @Override
+           public void actionPerformed(ActionEvent e) {
+               if(!changelgs)
+               {
+                   score.changeArray("a", 12,score.getArrayVal("p", 13));
+                   if(rounds < 13)
+                   {
+                       putDemoDefaultValuesInGUI();
+                       rounds++;
+                   }
+                   else
+                   {
+                       setupGameOver();
+                       gameOverFrame.setVisible(true);
+                       putDemoDefaultValuesInGUI();
+                   }
+               }
+           }
+       });
+
+       this.ylineBtn.addActionListener(new ActionListener() {
+             @Override
+            public void actionPerformed(ActionEvent e) {
+                if(!changey)
+                {
+                    score.changeArray("a", 13,score.getArrayVal("p", 13));
+                    if(rounds < 13)
+                    {
+                        putDemoDefaultValuesInGUI();
+                        rounds++;
+                    }
+                    else
+                    {
+                        setupGameOver();
+                        gameOverFrame.setVisible(true);
+                        putDemoDefaultValuesInGUI();
+                    }
+                }
+            }
+        });
+
+        this.clineBtn.addActionListener(new ActionListener() {
+             @Override
+            public void actionPerformed(ActionEvent e) {
+                if(!changec)
+                {
+                    score.changeArray("a", 14,score.getArrayVal("p", 14));
+                    if(rounds < 13)
+                    {
+                        putDemoDefaultValuesInGUI();
+                        rounds++;
+                    }
+                    else
+                    {
+                        setupGameOver();
+                        gameOverFrame.setVisible(true);
+                        putDemoDefaultValuesInGUI();
+                    }
+                }
+            }
+        });
+
+
+    }
+
+    private String checkToString()
+    {
+        String keep = "";
+        if(check1.isSelected())
+        {
+            keep = keep + 'y';
+        }
+        else
+        {
+            keep = keep + 'n';
+        }
+        if(check2.isSelected())
+        {
+            keep = keep + 'y';
+        }
+        else
+        {
+            keep = keep + 'n';
+        }
+        if(check3.isSelected())
+        {
+            keep = keep + 'y';
+        }
+        else
+        {
+            keep = keep + 'n';
+        }
+        if(check4.isSelected())
+        {
+            keep = keep + 'y';
+        }
+        else
+        {
+            keep = keep + 'n';
+        }
+        if(check5.isSelected())
+        {
+            keep = keep + 'y';
+        }
+        else
+        {
+            keep = keep + 'n';
+        }
+        return keep;
     }
 
     private void addReroll() {
         if(!this.rerollsLeftTextField.getText().equals("0"))
         {
-            this.diceValuesTextField.setText(die.dhand(hand,this.diceKeepStringTextField.getText()));
+            String keep = checkToString();
+
+            die.dhand(hand,keep);
+            slot1.setIcon(im.getDieImage(hand[0]));
+            slot2.setIcon(im.getDieImage(hand[1]));
+            slot3.setIcon(im.getDieImage(hand[2]));
+            slot4.setIcon(im.getDieImage(hand[3]));
+            slot5.setIcon(im.getDieImage(hand[4]));
             if(this.rerollsLeftTextField.getText().equals("1"))
             {
                 setupScore();
@@ -459,6 +875,11 @@ class Yahtzee {
             int i = Integer.parseInt(this.rerollsLeftTextField.getText());
             i--;
             this.rerollsLeftTextField.setText(String.valueOf(i));
+            check1.setSelected(false);
+            check2.setSelected(false);
+            check3.setSelected(false);
+            check4.setSelected(false);
+            check5.setSelected(false);
         }
     }
 
