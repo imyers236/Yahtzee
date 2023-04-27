@@ -10,6 +10,8 @@ import java.util.Scanner;
 
 /** Class to store the scores of a the dies each round. */
 public class ScoreCard {
+    private String[] keep = new String[16];
+    private String[] actual = new String[16];
     private Integer DICE_IN_PLAY;//is the number of dice the game is using
     private Integer line1; // 1 line
     private Integer line2; // 2 line
@@ -61,6 +63,11 @@ public class ScoreCard {
         cline = 0; 
         totalScore = 0; 
         slotUsed = false; 
+        for(int i = 0; i < 16; i++)
+        {
+            keep[i] = String.valueOf(0);
+            actual[i] = String.valueOf(0);
+        }
     }
 
     /**
@@ -72,6 +79,18 @@ public class ScoreCard {
         return totalScore;
     }
 
+    public String printSortedArray(Integer[] hand)
+    {
+        String out = "";
+        sortArray(hand, DICE_IN_PLAY);
+        out = out +"Here is your sorted hand : ";
+        for (Integer dieNumber = 0; dieNumber < DICE_IN_PLAY; dieNumber++)
+            {
+                out = out +hand[dieNumber] + " ";
+            }
+        return out;
+    }
+
     /**
      * print the total score for every slot on the scorecard
      * 
@@ -81,14 +100,8 @@ public class ScoreCard {
      * currentCount is the count of the number of die with a certain value
      */
     public String printTotalScore(Integer[] hand)
-    { String out = "";
-        sortArray(hand, DICE_IN_PLAY);
-        out = out +"Here is your sorted hand : ";
-        for (Integer dieNumber = 0; dieNumber < DICE_IN_PLAY; dieNumber++)
-            {
-                out = out +hand[dieNumber] + " ";
-            }
-            
+    { 
+        String out = "";
 
         //upper scorecard
         if((line1 == 0))
@@ -177,6 +190,30 @@ public class ScoreCard {
         return out;
     }
 
+    public void changeArray(String initial, Integer index, String value)
+    {
+        if(initial.equals("a"))
+        {
+            actual[index] = value;
+        }
+        else if(initial.equals("p"))
+        {
+            keep[index] = value;
+        }
+    }
+
+    public String getArrayVal(String initial, Integer index)
+    {
+        if(initial.equals("a"))
+        {
+            return actual[index];
+        }
+        else if(initial.equals("p"))
+        {
+            return keep[index];
+        }
+        return "";
+    }
     /**
      * prints the possible scores and total score for every slot on the scorecard
      * then asks the user to pick a slot to put their hand
@@ -187,17 +224,9 @@ public class ScoreCard {
      * dieNumber is for every die
      * currentCount is the count of the number of die with a certain value
      */
-    public void storeCard(Integer[] hand, Scanner user)
+    public void storeCard(Integer[] hand)
     {
-        String keep = "";
         sortArray(hand, DICE_IN_PLAY);
-        System.out.print("Here is your sorted hand : ");
-        for (Integer dieNumber = 0; dieNumber < DICE_IN_PLAY; dieNumber++)
-            {
-                System.out.print(hand[dieNumber] + " ");
-            }
-            System.out.println();
-            
 
         //upper scorecard
         for (Integer dieValue = 1; dieValue <= 6; dieValue++)
@@ -210,142 +239,207 @@ public class ScoreCard {
             }
             if((dieValue == 1))
             {
-                if((line1 == 0))
+                if((Integer.getInteger(actual[0]) == 0))
                 {
-                    System.out.println("Score " + dieValue * currentCount + " on the " + dieValue + " line");
+                    
                     line1Save = dieValue * currentCount; 
+                    keep[0] = String.valueOf(line1Save);
+                    actual[0] = String.valueOf(0);
                 }
                 else
-                    System.out.println("Score " + line1 + " on the " + dieValue + " line (closed)");
+                {
+                    keep[0] = actual[0];
+                }
             }
             else if((dieValue == 2))
             {
-                if((line2 == 0))
+                if((Integer.getInteger(actual[1]) == 0))
                 {
-                    System.out.println("Score " + dieValue * currentCount + " on the " + dieValue + " line");
                     line2Save = dieValue * currentCount;
+                    keep[1] = String.valueOf(line2Save);
+                    actual[1] = String.valueOf(0);
                 }
                 else
-                    System.out.println("Score " + line2 + " on the " + dieValue + " line (closed)");
+                {
+                    keep[1] = actual[1];
+                }
             }
             else if((dieValue == 3))
             {
-                if((line3 == 0))
+                if((Integer.getInteger(actual[2]) == 0))
                 {
-                    System.out.println("Score " + dieValue * currentCount + " on the " + dieValue + " line");
                     line3Save = dieValue * currentCount;
+                    keep[2] = String.valueOf(line3Save);
+                    actual[2] = String.valueOf(0);
                 }
                 else
-                    System.out.println("Score " + line3 + " on the " + dieValue + " line (closed)");
+                {
+                    keep[2] = actual[2];
+                }
             }
             if((dieValue == 4))
             {
-                if((line4 == 0))
+                if((Integer.getInteger(actual[3]) == 0))
                 {
-                    System.out.println("Score " + dieValue * currentCount + " on the " + dieValue + " line");
                     line4Save = dieValue * currentCount;
+                    keep[3] = String.valueOf(line4Save);
+                    actual[3] = String.valueOf(0);
                 }
                 else
-                    System.out.println("Score " + line4 + " on the " + dieValue + " line (closed)");
+                {
+                    keep[3] = actual[3];
+                }
             }
             if((dieValue == 5))
             {
-                if((line5 == 0))
+                if((Integer.getInteger(actual[4]) == 0))
                 {
-                    System.out.println("Score " + dieValue * currentCount + " on the " + dieValue + " line");
                     line5Save = dieValue * currentCount;
+                    keep[4] = String.valueOf(line5Save);
+                    actual[4] = String.valueOf(0);
                 }
                 else
-                    System.out.println("Score " + line5 + " on the " + dieValue + " line (closed)");
+                {
+                    keep[4] = actual[4];
+                }
             }
             if((dieValue == 6))
             {
-                if((line6 == 0))
+                if((Integer.getInteger(actual[5]) == 0))
                 {
-                    System.out.println("Score " + dieValue * currentCount + " on the " + dieValue + " line");
                     line6Save = dieValue * currentCount;
+                    keep[5] = String.valueOf(line6Save);
+                    actual[5] = String.valueOf(0);
                 }
                 else
-                    System.out.println("Score " + line6 + " on the " + dieValue + " line (closed)");
+                {
+                    keep[5] = actual[5];
+                }
             }
         }
-        if((line1 + line2 + line3 + line4 + line5 + line6) >= 63 )
+        if((Integer.getInteger(actual[0]) + Integer.getInteger(actual[1]) + Integer.getInteger(actual[2]) + Integer.getInteger(actual[3]) + Integer.getInteger(actual[4]) + Integer.getInteger(actual[5])) >= 63 )
         {
             upperBonus = 35;
-            System.out.println("Upper scoreboard over 63 Score " + upperBonus + " on the Upper Bonus line");
+            keep[6] = String.valueOf(Integer.getInteger(actual[0]) + Integer.getInteger(actual[1]) + Integer.getInteger(actual[2]) + Integer.getInteger(actual[3]) + Integer.getInteger(actual[4]) + Integer.getInteger(actual[5]));
+            actual[6] = String.valueOf(Integer.getInteger(actual[0]) + Integer.getInteger(actual[1]) + Integer.getInteger(actual[2]) + Integer.getInteger(actual[3]) + Integer.getInteger(actual[4]) + Integer.getInteger(actual[5]));
+            keep[7] = String.valueOf(upperBonus);
+            actual[7] = String.valueOf(upperBonus);
+        }
+        else
+        {
+            upperBonus = 0;
+            keep[6] = String.valueOf(Integer.getInteger(actual[0]) + Integer.getInteger(actual[1]) + Integer.getInteger(actual[2]) + Integer.getInteger(actual[3]) + Integer.getInteger(actual[4]) + Integer.getInteger(actual[5]));
+            actual[6] = String.valueOf(0);
+            keep[7] = String.valueOf(upperBonus);
+            actual[7] = String.valueOf(0);
         }
         //lower scorecard
-        if (maxOfAKindFound(hand) >= 3 && (kline3 == 0))
+        if (maxOfAKindFound(hand) >= 3 && (Integer.getInteger(actual[8]) == 0))
         {
-            System.out.println("Score " + totalAllDice(hand) + " on the 3 of a Kind line");
+            keep[8] = String.valueOf(totalAllDice(hand));
+            actual[8] = String.valueOf(0);
         }
-        else if(maxOfAKindFound(hand) >= 3 && !(kline3 == 0))
-            System.out.println("Score " + kline3 + " on the 3 of a Kind line (closed)");
+        else if(maxOfAKindFound(hand) >= 3 && !(Integer.getInteger(actual[8]) == 0))
+        {
+            keep[8] = actual[8];
+        }
         else
         {
-            System.out.println("Score 0 on the 3 of a Kind line");
+            keep[8] = String.valueOf(0);
+            actual[8] = String.valueOf(0);
         }
             
 
-        if (maxOfAKindFound(hand) >= 4 && (kline4 == 0))
+        if (maxOfAKindFound(hand) >= 4 && (Integer.getInteger(actual[9]) == 0))
         {
-            System.out.println("Score " + totalAllDice(hand) + " on the 4 of a Kind line");
+            keep[9] = String.valueOf(totalAllDice(hand));
+            actual[9] = String.valueOf(0);
         }
-        else if(maxOfAKindFound(hand) >= 4 && !(kline4 == 0))
-            System.out.println("Score " + kline4 + " on the 4 of a Kind line (closed)");
+        else if(maxOfAKindFound(hand) >= 4 && !(Integer.getInteger(actual[9]) == 0))
+        {
+            keep[9] = actual[9];
+        }
         else 
         {
-            System.out.println("Score 0 on the 4 of a Kind line");
+            keep[9] = String.valueOf(0);
+            actual[9] = String.valueOf(0);
         }
 
-        if (fullHouseFound(hand) && (fhline == 0))
+        if (fullHouseFound(hand) && (Integer.getInteger(actual[10]) == 0))
         {
-            System.out.println("Score 25 on the Full House line");
+            keep[10] = String.valueOf(25);
+            actual[10] = String.valueOf(0);
         }  
-        else if(fullHouseFound(hand) && !(fhline == 0))
-            System.out.println("Score 25 on the Full House line (closed)"); 
+        else if(fullHouseFound(hand) && !(Integer.getInteger(actual[10]) == 0))
+        {
+            keep[10] = actual[10];
+        }
         else
         {
-            System.out.println("Score 0 on the Full House line");
+            keep[10] = String.valueOf(0);
+            actual[10] = String.valueOf(0);
         }  
 
-        if (maxStraightFound(hand) >= 4 && (smsline == 0))
+        if (maxStraightFound(hand) >= 4 && (Integer.getInteger(actual[11]) == 0))
         {
-            System.out.println("Score 30 on the Small Straight line");
+            keep[11] = String.valueOf(30);
+            actual[11] = String.valueOf(0);
         } 
-        else if(maxStraightFound(hand) >= 4 && !(smsline == 0))
-            System.out.println("Score 30 on the Small Straight line (closed)"); 
+        else if(maxStraightFound(hand) >= 4 && !(Integer.getInteger(actual[11]) == 0))
+        {
+            keep[11] = actual[11];
+        }
         else
         {
-            System.out.println("Score 0 on the Small Straight line");
+            keep[11] = String.valueOf(0);
+            actual[11] = String.valueOf(0);
         }
             
-        if (maxStraightFound(hand) >= 5 && (lgsline == 0))
+        if (maxStraightFound(hand) >= 5 && (Integer.getInteger(actual[12]) == 0))
         {
-            System.out.println("Score 40 on the Large Straight line");
+            keep[12] = String.valueOf(40);
+            actual[12] = String.valueOf(0);
         } 
-        else if(maxStraightFound(hand) >= 5 && !(lgsline == 0))
-            System.out.println("Score 40 on the Large Straight line (closed)");  
+        else if(maxStraightFound(hand) >= 5 && !(Integer.getInteger(actual[12]) == 0))
+        {
+            keep[12] = actual[12];
+        } 
         else
         {
-            System.out.println("Score 0 on the Large Straight line");
+            keep[12] = String.valueOf(0);
+            actual[12] = String.valueOf(0);
         }   
-        if (maxOfAKindFound(hand) >= 5 && (yline == 0))
+        if (maxOfAKindFound(hand) >= 5 && (Integer.getInteger(actual[13]) == 0))
         {
-            System.out.println("Score 50 on the Yahtzee line");
+            keep[13] = String.valueOf(50);
+            actual[13] = String.valueOf(0);
         }
-        else if(maxOfAKindFound(hand) >=5 && !(yline == 0))
-            System.out.println("Score 50 on the Yahtzee line (closed)");
+        else if(maxOfAKindFound(hand) >=5 && !(Integer.getInteger(actual[13]) == 0))
+        {
+            keep[13] = actual[13];
+        }
         else
         {
-            System.out.println("Score 0 on the Yahtzee line");
+            keep[13] = String.valueOf(0);
+            actual[13] = String.valueOf(0);
         }
 
         if(cline == 0)
-            System.out.println("Score " + totalAllDice(hand) + " on the Chance line");
+        {
+            keep[14] = String.valueOf(totalAllDice(hand));
+            actual[14] = String.valueOf(0);
+        }
         else
-            System.out.println("Score " + cline + " on the Chance line (closed)");
-        totalScore = line1 + line2 + line3 + line4 + line5 + line6 + kline3 + kline4 + fhline + smsline + lgsline + yline + cline + upperBonus;
+        {
+            keep[14] = actual[14];
+        }
+        totalScore = Integer.getInteger(actual[0]) + Integer.getInteger(actual[1]) + Integer.getInteger(actual[2]) + Integer.getInteger(actual[3]) + Integer.getInteger(actual[4]) + Integer.getInteger(actual[5]) + Integer.getInteger(actual[7]) + Integer.getInteger(actual[8]) + Integer.getInteger(actual[9]) + Integer.getInteger(actual[10]) + Integer.getInteger(actual[11]) + Integer.getInteger(actual[12]) + Integer.getInteger(actual[13]) + Integer.getInteger(actual[14]);
+        keep[15] = String.valueOf(totalScore);
+        actual[15] = String.valueOf(totalScore);
+
+    }
+
+    /* 
         System.out.println("Current total score: " + totalScore);
         System.out.println();
         // Saving score
@@ -366,7 +460,7 @@ public class ScoreCard {
         while(!slotUsed)
         {
             System.out.println("Please select enter what open slot to save your score: ");
-            keep = user.nextLine();
+            keep = "5";
             if(keep.equals("1S"))
             {
                 if((line1 == 0))
@@ -520,7 +614,7 @@ public class ScoreCard {
                 slotUsed = true;
         }
     }
-
+*/
     /**
      * calculates the number of a kind there is
      * 
