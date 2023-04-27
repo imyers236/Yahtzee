@@ -346,7 +346,6 @@ public class ScoreCard {
         else
         {
             keep[8] = String.valueOf(0);
-            actual[8] = String.valueOf(0);
         }
             
 
@@ -362,7 +361,6 @@ public class ScoreCard {
         else 
         {
             keep[9] = String.valueOf(0);
-            actual[9] = String.valueOf(0);
         }
 
         if (fullHouseFound(hand) && (Integer.parseInt(actual[10]) == 0))
@@ -377,7 +375,6 @@ public class ScoreCard {
         else
         {
             keep[10] = String.valueOf(0);
-            actual[10] = String.valueOf(0);
         }  
 
         if (maxStraightFound(hand) >= 4 && (Integer.parseInt(actual[11]) == 0))
@@ -392,7 +389,6 @@ public class ScoreCard {
         else
         {
             keep[11] = String.valueOf(0);
-            actual[11] = String.valueOf(0);
         }
             
         if (maxStraightFound(hand) >= 5 && (Integer.parseInt(actual[12]) == 0))
@@ -407,7 +403,6 @@ public class ScoreCard {
         else
         {
             keep[12] = String.valueOf(0);
-            actual[12] = String.valueOf(0);
         }   
         if (maxOfAKindFound(hand) >= 5 && (Integer.parseInt(actual[13]) == 0))
         {
@@ -421,10 +416,9 @@ public class ScoreCard {
         else
         {
             keep[13] = String.valueOf(0);
-            actual[13] = String.valueOf(0);
         }
 
-        if(cline == 0)
+        if((Integer.parseInt(actual[14]) == 0))
         {
             keep[14] = String.valueOf(totalAllDice(hand));
             actual[14] = String.valueOf(0);

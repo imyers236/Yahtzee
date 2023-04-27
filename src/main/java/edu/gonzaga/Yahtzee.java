@@ -561,7 +561,7 @@ class Yahtzee {
            public void actionPerformed(ActionEvent e) {
             if(!change2)
             {
-                score.changeArray("a", 0,score.getArrayVal("p", 0));
+                score.changeArray("a", 1,score.getArrayVal("p", 1));
                 if(rounds < 13)
                 {
                     putDemoDefaultValuesInGUI();
@@ -582,7 +582,7 @@ class Yahtzee {
         public void actionPerformed(ActionEvent e) {
             if(!change3)
                 {
-                    score.changeArray("a", 0,score.getArrayVal("p", 0));
+                    score.changeArray("a", 2,score.getArrayVal("p", 2));
                     if(rounds < 13)
                     {
                         putDemoDefaultValuesInGUI();
@@ -603,7 +603,7 @@ class Yahtzee {
            public void actionPerformed(ActionEvent e) {
             if(!change4)
                 {
-                    score.changeArray("a", 0,score.getArrayVal("p", 0));
+                    score.changeArray("a", 3,score.getArrayVal("p", 3));
                     if(rounds < 13)
                     {
                         putDemoDefaultValuesInGUI();
@@ -624,7 +624,7 @@ class Yahtzee {
             public void actionPerformed(ActionEvent e) {
                 if(!change5)
                 {
-                    score.changeArray("a", 0,score.getArrayVal("p", 0));
+                    score.changeArray("a", 4,score.getArrayVal("p", 4));
                     if(rounds < 13)
                     {
                         putDemoDefaultValuesInGUI();
@@ -645,7 +645,7 @@ class Yahtzee {
             public void actionPerformed(ActionEvent e) {
                 if(!change6)
                 {
-                    score.changeArray("a", 0,score.getArrayVal("p", 0));
+                    score.changeArray("a", 5,score.getArrayVal("p", 5));
                     if(rounds < 13)
                     {
                         putDemoDefaultValuesInGUI();
@@ -750,7 +750,7 @@ class Yahtzee {
            public void actionPerformed(ActionEvent e) {
                if(!changelgs)
                {
-                   score.changeArray("a", 12,score.getArrayVal("p", 13));
+                   score.changeArray("a", 12,score.getArrayVal("p", 12));
                    if(rounds < 13)
                    {
                        putDemoDefaultValuesInGUI();
