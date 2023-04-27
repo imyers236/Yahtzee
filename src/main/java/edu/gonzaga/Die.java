@@ -55,6 +55,15 @@ public class Die implements Comparable<Die> {
         return this.numSides;
     }
 
+    /**
+     * The function rolls a set number of dice and returns the resulting values as a string.
+     * 
+     * @param hand An array of Integers representing the values of the dice in the player's hand. The
+     * method rolls each die and updates the corresponding element in the array with the new value. The
+     * method then returns a String representation of the new values of the dice in the hand.
+     * @return The method `defaultHand` returns a `String` representation of the values rolled on
+     * `DICE_IN_PLAY` number of dice.
+     */
     public String defaultHand(Integer[] hand)
     {
         String dice = "";
@@ -67,6 +76,18 @@ public class Die implements Comparable<Die> {
         return dice;
     }
 
+    /**
+     * The function simulates rolling dice and updates the hand based on which dice to keep.
+     * 
+     * @param hand an array of integers representing the current values of the dice in the player's
+     * hand
+     * @param keep The "keep" parameter is a String that represents which dice the player wants to keep
+     * from their current hand. The String contains a sequence of characters, where each character
+     * corresponds to a die in the hand. If the character is 'y', it means the player wants to keep
+     * that die and not roll
+     * @return The method is returning a String representation of the dice values in the hand after
+     * rolling and potentially keeping certain dice based on the input String `keep`.
+     */
     public String dhand(Integer[] hand, String keep)
     {
         String dice = "";

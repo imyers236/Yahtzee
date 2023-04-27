@@ -79,6 +79,13 @@ public class ScoreCard {
         return totalScore;
     }
 
+    /**
+     * This Java function takes an array of integers, sorts it, and returns a string with the sorted
+     * values.
+     * 
+     * @param hand an array of Integers representing a hand of dice
+     * @return The method is returning a String that contains the sorted hand of dice.
+     */
     public String printSortedArray(Integer[] hand)
     {
         String out = "";
@@ -190,6 +197,16 @@ public class ScoreCard {
         return out;
     }
 
+    /**
+     * This Java function changes the value of an element in an array based on the input parameters.
+     * 
+     * @param initial A string that indicates which array to modify. It can be either "a" or "p".
+     * @param index The index parameter is an Integer that represents the index of the element in the
+     * array that needs to be changed.
+     * @param value The value parameter is a String that represents the new value that will be assigned
+     * to an element in the actual or keep array, depending on the value of the initial parameter and
+     * the index parameter.
+     */
     public void changeArray(String initial, Integer index, String value)
     {
         if(initial.equals("a"))
@@ -202,6 +219,20 @@ public class ScoreCard {
         }
     }
 
+    /**
+     * The function returns a value from either the "actual" or "keep" array based on the input initial
+     * and index parameters.
+     * 
+     * @param initial A string that specifies whether to retrieve a value from the "actual" array or
+     * the "keep" array. It can have a value of "a" or "p".
+     * @param index The index parameter is an Integer representing the index position of the element in
+     * the array that needs to be retrieved.
+     * @return The method is returning a String value. The specific String value being returned depends
+     * on the input parameters. If the initial parameter is "a", the method returns the value at the
+     * index position in the actual array. If the initial parameter is "p", the method returns the
+     * value at the index position in the keep array. If the initial parameter is neither "a" nor "p",
+     * the method returns
+     */
     public String getArrayVal(String initial, Integer index)
     {
         if(initial.equals("a"))
@@ -214,15 +245,12 @@ public class ScoreCard {
         }
         return "";
     }
+    
+
     /**
-     * prints the possible scores and total score for every slot on the scorecard
-     * then asks the user to pick a slot to put their hand
+     * This function stores the scores of a Yahtzee game in an array based on the dice values rolled.
      * 
-     * @param hand is the array of dice that gets inputted
-     * @param user takes in the user's input
-     * DICE_IN_PLAY is the number of dice the game is using
-     * dieNumber is for every die
-     * currentCount is the count of the number of die with a certain value
+     * @param hand an array of integers representing the values of dice in play
      */
     public void storeCard(Integer[] hand)
     {
@@ -433,182 +461,7 @@ public class ScoreCard {
 
     }
 
-    /* 
-        System.out.println("Current total score: " + totalScore);
-        System.out.println();
-        // Saving score
-        System.out.println("For One's type 1S");
-        System.out.println("For Two's type 2S");
-        System.out.println("For Three's type 3S");
-        System.out.println("For Four's type 4S");
-        System.out.println("For Five's type 5S");
-        System.out.println("For Six's type 6S");
-        System.out.println("For Three of a Kind type 3K");
-        System.out.println("For Four of a Kind type 4K");
-        System.out.println("For Full House type FH");
-        System.out.println("For Small Straight type SS");
-        System.out.println("For Large Straight type LS");
-        System.out.println("For Yahtzee type YH");
-        System.out.println("For Chance type CH");
-        slotUsed = false;
-        while(!slotUsed)
-        {
-            System.out.println("Please select enter what open slot to save your score: ");
-            keep = "5";
-            if(keep.equals("1S"))
-            {
-                if((line1 == 0))
-                {
-                    line1 = line1Save;
-                    slotUsed = true;
-                }
-                else
-                {
-                    System.out.println("This slot has already been used");
-                }
-            }
-            else if(keep.equals("2S"))
-            {
-                if((line2 == 0))
-                {
-                    line2 = line2Save;
-                    slotUsed = true;
-                }
-                else 
-                {
-                    System.out.println("This slot has already been used");
-                }
-            }
-            else if(keep.equals("3S"))
-            {
-                if((line3 == 0))
-                {
-                    line3 = line3Save;
-                    slotUsed = true;
-                }
-                else 
-                {
-                    System.out.println("This slot has already been used");
-                }
-            }
-            else if(keep.equals("4S"))
-            {
-                if((line4 == 0))
-                {
-                    line4 = line4Save;
-                    slotUsed = true;
-                }
-                else 
-                {
-                    System.out.println("This slot has already been used");
-                }
-            }
-            else if(keep.equals("5S"))
-            {
-                if((line5 == 0))
-                {
-                    line5 = line5Save;
-                    slotUsed = true;
-                }
-                else 
-                {
-                    System.out.println("This slot has already been used");
-                }
-            }
-            else if(keep.equals("6S"))
-            {
-                if((line6 == 0))
-                {
-                    line6 = line6Save;
-                    slotUsed = true;
-                }
-                else 
-                {
-                    System.out.println("This slot has already been used");
-                }
-            }
-            else if(keep.equals("3K"))
-            {
-                if((kline3 == 0))
-                {
-                    kline3 = totalAllDice(hand);
-                    slotUsed = true;
-                }
-                else 
-                {
-                    System.out.println("This slot has already been used");
-                }
-            }
-            else if(keep.equals("4K"))
-            {
-                if((kline4 == 0))
-                {
-                    kline4 = totalAllDice(hand);
-                    slotUsed = true;
-                }
-                else 
-                {
-                    System.out.println("This slot has already been used");
-                }
-            }
-            else if(keep.equals("FH"))
-            {
-                if((fhline == 0))
-                {
-                    fhline = 25;
-                    slotUsed = true;
-                }
-                else 
-                {
-                    System.out.println("This slot has already been used");
-                }
-            }
-            else if(keep.equals("SS"))
-            {
-                if((smsline == 0))
-                {
-                    smsline = 30;
-                    slotUsed = true;
-                }
-                else 
-                {
-                    System.out.println("This slot has already been used");
-                }
-            }
-            else if(keep.equals("LS"))
-            {
-                if((lgsline == 0))
-                {
-                    lgsline = 40;
-                    slotUsed = true;
-                }
-                else 
-                {
-                    System.out.println("This slot has already been used");
-                }
-            }
-            else if(keep.equals("YH"))
-            {
-                yline = 50;
-                slotUsed = true;
-            }
-            else if(keep.equals("CH"))
-            {
-                if((cline == 0))
-                {
-                    cline = totalAllDice(hand);
-                    slotUsed = true;
-                }
-                else 
-                {
-                    System.out.println("This slot has already been used");
-                }
-            }
-            else if(keep.equals("q"))
-                slotUsed = true;
-        }
-    }
-*/
+    
     /**
      * calculates the number of a kind there is
      * 

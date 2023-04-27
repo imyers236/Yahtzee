@@ -475,7 +475,7 @@ class Yahtzee {
     private void putDemoDefaultValuesInGUI() {
 
         // Example setting of player name
-        this.playerNameTextField.setText("Player's Name ");
+        this.playerNameTextField.setText("Player's Name Here");
 
         // Example of player entered dice keep string
         this.diceKeepStringTextField.setText("nnnyn");
@@ -496,6 +496,9 @@ class Yahtzee {
         slot5.setIcon(im.getDieImage(hand[4]));
     }
 
+    /**
+     * The function sets up a JFrame for displaying a game over message and the total score.
+     */
     void setupGameOver()
     {
         this.gameOverFrame = new JFrame("Game Over");
@@ -524,7 +527,7 @@ class Yahtzee {
             this.scorecardLineSelectComboBox.addItem(currChoice);
         }
 
-        // Example of a button callback - just prints when clicked
+        // diceReroll button callback - calls reroll
         this.diceRerollBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -532,8 +535,7 @@ class Yahtzee {
             }
         });
 
-        // Example of another button callback
-        // Reads the combo box selected value and writes it to the dice reroll box
+        // Changes actual array to value of potential if box is free then resets fields
         this.oneBtn.addActionListener(new ActionListener() {
              @Override
             public void actionPerformed(ActionEvent e) {
@@ -557,7 +559,7 @@ class Yahtzee {
                 
             }
         });
-
+        // Changes actual array to value of potential if box is free then resets fields
         this.twoBtn.addActionListener(new ActionListener() {
             @Override
            public void actionPerformed(ActionEvent e) {
@@ -580,7 +582,7 @@ class Yahtzee {
             }
            }
        });
-
+       // Changes actual array to value of potential if box is free then resets fields
        this.threeBtn.addActionListener(new ActionListener() {
             @Override
         public void actionPerformed(ActionEvent e) {
@@ -603,7 +605,7 @@ class Yahtzee {
                 }
             }
         });
-
+        // Changes actual array to value of potential if box is free then resets fields
         this.fourBtn.addActionListener(new ActionListener() {
             @Override
            public void actionPerformed(ActionEvent e) {
@@ -626,7 +628,7 @@ class Yahtzee {
                 }
            }
        });
-
+       // Changes actual array to value of potential if box is free then resets fields
        this.fiveBtn.addActionListener(new ActionListener() {
              @Override
             public void actionPerformed(ActionEvent e) {
@@ -649,7 +651,7 @@ class Yahtzee {
                 }
             }
         });
-
+        // Changes actual array to value of potential if box is free then resets fields
         this.sixBtn.addActionListener(new ActionListener() {
              @Override
             public void actionPerformed(ActionEvent e) {
@@ -673,7 +675,7 @@ class Yahtzee {
 
             }
         });
-
+        // Changes actual array to value of potential if box is free then resets fields
         this.kline3Btn.addActionListener(new ActionListener() {
             @Override
            public void actionPerformed(ActionEvent e) {
@@ -696,7 +698,7 @@ class Yahtzee {
                }
            }
        });
-
+       // Changes actual array to value of potential if box is free then resets fields
        this.kline4Btn.addActionListener(new ActionListener() {
              @Override
             public void actionPerformed(ActionEvent e) {
@@ -719,7 +721,7 @@ class Yahtzee {
                 }
             }
         });
-
+        // Changes actual array to value of potential if box is free then resets fields
         this.fhlineBtn.addActionListener(new ActionListener() {
             @Override
            public void actionPerformed(ActionEvent e) {
@@ -742,7 +744,7 @@ class Yahtzee {
                }
            }
        });
-
+       // Changes actual array to value of potential if box is free then resets fields
        this.smslineBtn.addActionListener(new ActionListener() {
              @Override
             public void actionPerformed(ActionEvent e) {
@@ -765,7 +767,7 @@ class Yahtzee {
                 }
             }
         });
-
+        // Changes actual array to value of potential if box is free then resets fields
         this.lgslineBtn.addActionListener(new ActionListener() {
             @Override
            public void actionPerformed(ActionEvent e) {
@@ -788,7 +790,7 @@ class Yahtzee {
                }
            }
        });
-
+       // Changes actual array to value of potential if box is free then resets fields
        this.ylineBtn.addActionListener(new ActionListener() {
              @Override
             public void actionPerformed(ActionEvent e) {
@@ -811,7 +813,7 @@ class Yahtzee {
                 }
             }
         });
-
+        // Changes actual array to value of potential if box is free then resets fields
         this.clineBtn.addActionListener(new ActionListener() {
              @Override
             public void actionPerformed(ActionEvent e) {
@@ -838,6 +840,14 @@ class Yahtzee {
 
     }
 
+    /**
+     * The function returns a string of 'y' and 'n' characters based on the selected state of five
+     * checkboxes.
+     * 
+     * @return The method is returning a String that represents the selection status of five
+     * checkboxes. The returned String contains the characters 'y' or 'n' depending on whether each
+     * checkbox is selected or not.
+     */
     private String checkToString()
     {
         String keep = "";
@@ -884,6 +894,10 @@ class Yahtzee {
         return keep;
     }
 
+    /**
+     * The function allows the player to reroll selected dice in a game of dice by updating the icons
+     * and decreasing the number of rerolls left.
+     */
     private void addReroll() {
         if(!this.rerollsLeftTextField.getText().equals("0"))
         {
@@ -910,6 +924,9 @@ class Yahtzee {
         }
     }
 
+    /**
+     * The function updates the scorecard and displays the scores for each category in a Yahtzee game.
+     */
     private void setupScore()
     {
         this.scorecardTextArea.setText(score.printSortedArray(hand));
